@@ -38,18 +38,18 @@ services:
       - ./:/app:delegated
       # - bundle:/usr/local/bundle
     depends_on:
-      - postgres
+      - db_postgres
     ports:
       - 3000:3000
     env_file: .env
     environment:
       - RAILS_ENV=development
       - DB_PASSWORD=postgres
-      - DB_HOST=postgres
-    entrypoint: ["bash", "/app/docker/entrypoints/server.sh"]  
+      - DB_HOST=db_postgres
+    entrypoint: ["bash", "/app/docker/entrypoints/server.sh"]
     command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
 
-  postgres:
+  db_postgres:
     image: postgres:12
     restart: always
     ports:
@@ -60,6 +60,7 @@ services:
       - POSTGRES_DB=tooljet_development
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
 
 volumes:
   postgres:
