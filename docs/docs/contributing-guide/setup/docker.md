@@ -27,27 +27,38 @@ docker-compose version 1.26.2, build eefe0d31
 $ git clone https://github.com/tooljet/tooljet.git 
 ```
 
-2. Create a `.env` file by copying `.env.example`. More information on the variables that can be set is given here: env variable reference
+2. Cd into tooljet directory
+
+```bash
+$ cd tooljet
+```
+
+3. Create a `.env` file by copying `.env.example`. More information on the variables that can be set is given here: env variable reference
 ```bash
 $ cp .env.example .env
 ```
 
-3. Build docker images 
+4. Edit .env variables required
+```bash
+$ nano .env
+```
+
+5. Build docker images 
 ```bash
 $ docker-compose build 
 ```
 
-4. ToolJet server is built using Ruby on Rails. You have to reset the database if building for the first time.
+6. ToolJet server is built using Ruby on Rails. You have to reset the database if building for the first time.
 ```bash
 $ docker-compose run server rails db:reset
 ```
 
-5. Run ToolJet
+7. Run ToolJet
 ```bash
 $ docker-compose up
 ```
 
-6. Creating login credentials 
+8. Creating login credentials 
 
     1.  Open rails console using: 
 
@@ -70,7 +81,7 @@ $ docker-compose up
     OrganizationUser.create(user: User.first, organization: Organization.first, role: 'admin')
     ```
 
-7.  To shut down the containers,
+To shut down the containers,
 ```bash
 $ docker-compose down
 ```
